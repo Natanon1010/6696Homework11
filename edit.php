@@ -36,13 +36,13 @@ include("conn.php");
     </style>
     
 
-    <title>เเก้ไขข้อมูลsamsung</title>
+    <title>เเก้ไขข้อมูลplaystation</title>
 </head>
 
 <?php
 if(isset($_GET['action_even'])=='edit'){
     $id=$_GET['id'];
-    $sql="SELECT * FROM samsung_products WHERE id=$id";
+    $sql="SELECT * FROM playstationgames WHERE id=$id";
     $result=$conn->query($sql);
     if($result->num_rows>0){
         $row=$result->fetch_assoc();
@@ -52,7 +52,7 @@ if(isset($_GET['action_even'])=='edit'){
     //$conn->close();
 }
 ?>
-<h1>แก้ไขข้อมูลsamsung</h1>
+<h1>แก้ไขข้อมูลplaystation</h1>
 
 
 <form action="edit_1.php" method="POST">
@@ -65,64 +65,78 @@ if(isset($_GET['action_even'])=='edit'){
     </div>
    
     <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> โมเดล </label>
+        <label class="col-sm-1 col-form-label"> ชื่อเกม </label>
         <div class="col-sm-2">
-        <input type="text" name="model" class="form-control" maxlength="50" value=<?php echo$row['model']; ?> required>
+        <input type="text" name="game_name" class="form-control" maxlength="50" value=<?php echo$row['game_name']; ?> required>
         </div>
     </div>
 
     <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> หมวดหมู่ </label>
+        <label class="col-sm-1 col-form-label">  ประเภท </label>
         <div class="col-sm-2">
-        <select class="form-select" name="category" aria-label="Default select example">
-                <option >กรุณาระบุหมวดหมู่</option>
-                <option value="สมาร์ทวอทช์" <?php if ($row['category']=='แล็ปท็อป'){ echo "selected";} ?>>แล็ปท็อป</option>
-                <option value="สมาร์ทโฟน" <?php if ($row['category']=='สมาร์ทโฟน'){ echo "selected";} ?>>สมาร์ทโฟน</option>
-                <option value="สมาร์ทโฟนกันกระแทก"<?php if ($row['category']=='สมาร์ทโฟนกันกระแทก'){ echo "selected";} ?>>สมาร์ทโฟนกันกระแทก</option>
-                <option value="สมาร์ทโฟนพับได้"<?php if ($row['category']=='สมาร์ทโฟนพับได้'){ echo "selected";} ?>>สมาร์ทโฟนพับได้</option>
-                <option value="หูฟังไร้สาย"<?php if ($row['category']=='หูฟังไร้สาย'){ echo "selected";} ?>>หูฟังไร้สาย</option>
-                <option value="แท็บเล็ต"<?php if ($row['category']=='แท็บเล็ต'){ echo "selected";} ?>>แท็บเล็ต</option>
-                <option value="แล็ปท็อป"<?php if ($row['category']=='แล็ปท็อป'){ echo "selected";} ?>>แล็ปท็อป</option>
+        <select class="form-select" name="genre" aria-label="Default select example">
+                <option >กรุณาระบุประเภทเกมส์</option>
+                <option value="Action" <?php if ($row['genre']=='Action'){ echo "selected";} ?>>Action</option>
+                <option value="Action RPG" <?php if ($row['genre']=='Action RPG'){ echo "selected";} ?>>Action RPG</option>
+                <option value="Adventure"<?php if ($row['genre']=='Adventure'){ echo "selected";} ?>>Adventure</option>
+                <option value="Fighting"<?php if ($row['genre']=='Fighting'){ echo "selected";} ?>>Fighting</option>
+                <option value="FPS"<?php if ($row['genre']=='FPS'){ echo "selected";} ?>>FPS</option>
+                <option value="Horror"<?php if ($row['genre']=='Horror'){ echo "selected";} ?>>Horror</option>
+                <option value="Metroidvania"<?php if ($row['genre']=='Metroidvania'){ echo "selected";} ?>>Metroidvania</option>
+                <option value="Racing"<?php if ($row['genre']=='Racing'){ echo "selected";} ?>>Racing</option>
+                <option value="Roguelike"<?php if ($row['genre']=='Roguelike'){ echo "selected";} ?>>Roguelike</option>
 
-            </select>
+            </select>      
         </div>
     </div>
 
     
     <div class="row mb-3">
+        <label class="col-sm-1 col-form-label"> ปีที่วางจำหน่าย </label>
+        <div class="col-sm-2">
+        <input type="text" name="release_year" class="form-control" maxlength="50" value=<?php echo$row['release_year']; ?> required>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label"> นักพัฒนา </label>
+        <div class="col-sm-2">
+            <input type="text" name="developer" class="form-control" maxlength="50" value=<?php echo$row['developer']; ?> required>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label"> สำนักพิมพ์ </label>
+        <div class="col-sm-2">
+            <input type="text" name="publisher" class="form-control" maxlength="50" value=<?php echo$row['publisher']; ?> required>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
+        <label class="col-sm-1 col-form-label"> แพลตฟอร์ม </label>
+        <div class="col-sm-2">
+            <input type="text" name="platform" class="form-control" maxlength="50" value=<?php echo$row['platform']; ?> required>
+        </div>
+    </div>
+
+
+    <div class="row mb-3">
         <label class="col-sm-1 col-form-label"> ราคา </label>
         <div class="col-sm-2">
-        <input type="text" name="price" class="form-control" maxlength="50" value=<?php echo$row['price']; ?> required>
+            <input type="text" name="price" class="form-control" maxlength="50" value=<?php echo$row['price']; ?> required>
         </div>
     </div>
 
 
-    <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> วันว่างจำหน่าย </label>
-        <div class="col-sm-2">
-            <input type="text" name="release_date" class="form-control" maxlength="50" value=<?php echo$row['release_date']; ?> required>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> คลังสินค้า </label>
-        <div class="col-sm-2">
-            <input type="text" name="stock" class="form-control" maxlength="50" value=<?php echo$row['stock']; ?> required>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <label class="col-sm-1 col-form-label"> รายละเอียด </label>
-        <div class="col-sm-2">
-            <input type="text" name="description" class="form-control" maxlength="50" value=<?php echo$row['description']; ?> required>
-        </div>
-    </div>
     </div>
     <button type="submit" class="btn btn-primary"> บันทึกข้อมูล</button>
     <button type="reset" class="btn btn-danger"> ยกเลิก</button>
  
 </form>
-<br> พัฒนาโดย 664485025 นายสถาพร ทิพย์ไปรยา <br>
+<br> พัฒนาโดย 664485015 นายณฐนนท์ ชุมเพ็ญ <br>
 </head>
 
 </html>

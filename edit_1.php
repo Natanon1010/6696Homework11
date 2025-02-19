@@ -43,22 +43,23 @@ include("conn.php");
 <body>
     <br><br>
     <center>
-        <h1>แก้ไขข้อมูลsamsung</h1>
+        <h1>แก้ไขข้อมูลplaystation</h1>
     </center>
     <?php
     //เริ่มเก็บข้อมูล
     $id = $_POST['id'];
-    $model = $_POST['model'];
-    $category = $_POST['category'];
-    $price = $_POST['price'];
-    $release_date = $_POST['release_date'];
-    $stock = $_POST['stock'];
-    $description = $_POST['description'];
+    $game_name = $_POST['game_name'];
+    $genre = $_POST['genre'];
+    $release_year = $_POST['release_year'];
+    $developer = $_POST['developer'];
+    $publisher = $_POST['publisher'];
+    $platform = $_POST['platform'];
+    $price= $_POST['price'];
 
     //เขียนคำสั่ง SQL
 
 
-    $sql = "UPDATE samsung_products SET model='$model',category='$category',price='$price',release_date='$release_date',stock='$stock',description='$description'  WHERE id=$id";
+    $sql = "UPDATE playstationgames SET game_name='$game_name',genre='$genre',release_year='$release_year',developer='$developer',publisher='$publisher',platform='$platform',price='$price'  WHERE id=$id";
 
    // รับคำสั่ง sql
    if ($conn->query($sql) === TRUE) {
@@ -73,7 +74,7 @@ include("conn.php");
    $conn->close();
    ?>
 
-    พัฒนาโดย 664485025 นายสถาพร ทิพย์ไปรยา <br>
+    พัฒนาโดย 664485015 นายณฐนนท์ ชุมเพ็ญ <br>
     </head>
 
 </html>

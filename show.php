@@ -34,7 +34,7 @@ include("conn.php");
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ข้อมูลsamsung</title>
+    <title>ข้อมูลplaystation</title>
 </head>
 
 <body>
@@ -44,13 +44,13 @@ include("conn.php");
         //echo "Test";
 
         $id = $_GET['id'];
-        $sql = "SELECT * FROM samsung_products WHERE id=$id";
+        $sql = "SELECT * FROM playstationgames WHERE id=$id";
         // echo $sql;
         $result = $conn->query($sql);
         // $lvsql =mysqli_query($conn,$sql);
         if ($result->num_rows > 0) {
             // sql to delete a record
-            $sql = "DELETE FROM samsung_products WHERE id=$id";
+            $sql = "DELETE FROM playstationgames WHERE id=$id";
 
             if ($conn->query($sql) === TRUE) {
                 echo "<div class='alert alert-success'>ลบข้อมูลสำเร็จ</div>";
@@ -64,24 +64,26 @@ include("conn.php");
     }
     ?>
 
-    <h1>แสดงข้อมูลsamsung</h1>
-    <h2>พัฒนาโดย 664485025 นายสถาพร ทิพย์ไปรยา</h2>
+    <h1>แสดงข้อมูลplaystationgames</h1>
+    <h2>พัฒนาโดย 664485015 นายณฐนนท์ ชุมเพ็ญ</h2>
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr>
                 <th>รหัส</th>
-                <th>โดเมล</th>
-                <th>หมวดหมู่</th>
-                <th>ราคา</th>
+                <th>ชื่อเกม</th>
+                <th>ประเภท</th>
+                <th>ปีที่วางจำหน่าย</th>
                 <th>วันว่างจำหน่าย</th>
-                <th>คลังสินค้า</th>
-                <th>รายละเอียด</th>
+                <th>นักพัฒนา</th>
+                <th>สำนักพิมพ์</th>
+                <th>แพลตฟอร์ม</th>
+                <th>ราคา</th>
             </tr>
         </thead>
         <tbody>
 
             <?php
-            $sql = "SELECT * FROM samsung_products";
+            $sql = "SELECT * FROM playstationgames";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -89,17 +91,18 @@ include("conn.php");
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
                     echo "<td>" . $row["id"] . "</td>";
-                    echo "<td>" . $row["model"] . "</td>";
-                    echo "<td>" . $row["category"] . "</td>";
+                    echo "<td>" . $row["game_name"] . "</td>";
+                    echo "<td>" . $row["genre"] . "</td>";
+                    echo "<td>" . $row["release_year"] . "</td>";
+                    echo "<td>" . $row["developer"] . "</td>";
+                    echo "<td>" . $row["publisher"] . "</td>";
+                    echo "<td>" . $row["platform"] . "</td>";
                     echo "<td>" . $row["price"] . "</td>";
-                    echo "<td>" . $row["release_date"] . "</td>";
-                    echo "<td>" . $row["stock"] . "</td>";
-                    echo "<td>" . $row["description"] . "</td>";
 
-                    echo '<td><a type="button" href="show.php?action_even=del&id=' . $row['id'] . '" title="ลบข้อมูล" onclick="return confirm(\'ต้องการจะลบข้อมูลรายชื่อ ' . $row['id'] . ' ' . $row['model'] . ' ' . $row['category'] . '?\')" class="btn btn-danger btn-sm"> ลบข้อมูล </a>  
+                    echo '<td><a type="button" href="show.php?action_even=del&id=' . $row['id'] . '" title="ลบข้อมูล" onclick="return confirm(\'ต้องการจะลบข้อมูลรายชื่อ ' . $row['id'] . ' ' . $row['game_name'] . ' ' . $row['genre'] . '?\')" class="btn btn-danger btn-sm"> ลบข้อมูล </a>  
                     
                     <a type="button" href="edit.php?action_even=edit&id=' . $row['id'] . '" 
-                title="แก้ไขข้อมูล" onclick="return confirm(\'ต้องการจะแก้ไขข้อมูลรายชื่อ ' . $row['id'] . ' ' . $row['model'] . ' ' . $row['category'] . '?\')" class="btn btn-primary btn-sm"> แก้ไขข้อมูล </a> </td>';
+                title="แก้ไขข้อมูล" onclick="return confirm(\'ต้องการจะแก้ไขข้อมูลรายชื่อ ' . $row['id'] . ' ' . $row['game_name'] . ' ' . $row['genre'] . '?\')" class="btn btn-primary btn-sm"> แก้ไขข้อมูล </a> </td>';
 
                     echo "</tr>";
                 }
